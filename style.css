@@ -1,27 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+
 body {
   cursor: none;
   overflow-x: hidden;
 }
-
-.custom-cursor {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #55555560;
-  border: solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  pointer-events: none; /* Den Cursor von Klicks ausschließen */
-  transition: width 0.3s, height 0.3s; /* Übergangseffekt für Größenänderung */
-  z-index: 9999; /* Z-Index erhöhen, um sicherzustellen, dass der benutzerdefinierte Cursor über anderen Inhalten liegt */
-  left: 50%; /* Horizontale Position in der Mitte des Cursors */
-  top: 50%; /* Vertikale Position in der Mitte des Cursors */
-  transform: translate(-50%, -50%); /* Position des Cursors korrigieren */
-}
-
-
-
 
 body.light-mode {
   transition: background-color 0.3s, color 0.3s;
@@ -106,6 +89,61 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Ändern Sie flex-direction nicht, um die Karten in einer Reihe anzuordnen */
+  align-items: center;
+  gap: 0.5rem;
+  width: 90%;
+  padding: 2rem;
+  margin: auto; /* Zentriert den Container horizontal */
+}
+
+.cards .card {
+  width: 400px;
+  height: 288px;
+  background: radial-gradient(150rem circle at 0 0, rgba(0, 255, 241, 0), transparent 0%);
+  border-radius: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.15s;
+}
+
+.cards .card:hover {
+  transform: scale(0.97);
+}
+
+.cards .card:hover::before {
+  opacity: 1;
+}
+
+.cards .card::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+  background: radial-gradient(60rem circle at var(--xPos) var(--yPos), rgba(0, 255, 241, 0.1), transparent 35%);
+  opacity: 0;
+  transition: all 0.15s ease-in-out;
+}
+
+.cards .card .card-content {
+  background-color: #13161c;
+  border-radius: inherit;
+  transition: all 0.25s;
+  height: calc(100% - 0.1rem);
+  width: calc(100% - 0.1rem);
+}
+
 
 
 
@@ -216,15 +254,7 @@ section{
   border: solid rgb(255, 255, 255);
 }
 
-.media-icons{
-  margin-top: 50px;
-}
 
-.media-icons a{
-  color: #fff;
-  font-size: 25px;
-  margin-right: 30px;
-}
 
 header{
   z-index: 999;
@@ -467,7 +497,7 @@ body{
 }
 
 .services .content .card .service-icon{
-  color: #3a6cf4;
+  color: rgba(39, 39, 39, 0.8);
   font-size: 8em;
   text-align: center;
   transition: transform 0.5s ease;
@@ -482,7 +512,7 @@ body{
 }
 
 .services .content .card .info h3{
-  color: #3a6cf4;
+  color: rgba(39, 39, 39, 0.8);
   font-size: 1.2em;
   font-weight: 700;
   margin: 10px;
@@ -538,6 +568,10 @@ body{
   margin-top: 20px;
 }
 
+.mailto {
+text-decoration: none;
+}
+
 .contact .content .row{
   display: flex;
   justify-content: center;
@@ -548,7 +582,7 @@ body{
 .contact .content .row .card{
   background: #fff;
   width: 240px;
-  margin: 20px;
+  margin: 40px 20px 0px 0px;
   padding: 25px;
   display: flex;
   justify-content: center;
@@ -559,7 +593,7 @@ body{
 }
 
 .contact .content .row .card .contact-icon{
-  color: #3a6cf4;
+  color: rgba(39, 39, 39, 0.8);
   font-size: 4em;
   text-align: center;
   transition: transform 0.5s ease;
@@ -585,16 +619,17 @@ body{
   font-weight: 500;
 }
 
-.contact-form{
-  background: #fff;
-  max-width: 600px;
-  margin-top: 50px;
+.contact-form {
+  background: rgb(255, 255, 255);
+  width: 32vw;
+  margin-top: 40px;
   padding: 50px;
   border-radius: 10px;
   box-shadow: 0 5px 25px rgba(1 1 1 / 15%);
+  z-index: 2;
 }
 
-.contact-form h3{
+.contact-form h3 {
   color: #111;
   font-size: 1.6em;
   font-weight: 600;
@@ -602,14 +637,12 @@ body{
   margin-bottom: 40px;
 }
 
-.contact-form .input-box{
-  position: relative;
-  width: 100%;
+.contact-form .input-box {
   margin-bottom: 20px;
 }
 
 .contact-form .input-box input,
-.contact-form .input-box textarea{
+.contact-form .input-box textarea {
   color: #111;
   width: 100%;
   padding: 10px;
@@ -621,9 +654,9 @@ body{
   resize: none;
 }
 
-.contact-form .input-box .send-btn{
+.contact-form .input-box .send-btn {
   color: #fff;
-  background: #3a6cf4;
+  background: rgba(39, 39, 39, 0.8);
   display: inline-block;
   font-size: 1.1em;
   font-weight: 500;
@@ -631,13 +664,25 @@ body{
   letter-spacing: 2px;
   width: 100%;
   border: none;
-  cursor: none;
+  cursor: pointer;
   transition: 0.5s ease;
+  border-radius: 5px;
+  overflow: hidden;
+  background-image: linear-gradient(to right, rgb(255, 136, 0), rgb(255, 0, 43), rgb(0, 255, 242));
+  background-size: 200% auto;
+  transition: background-position 0.5s;
 }
 
-.contact-form .input-box .send-btn:hover{
-  background: #235bf6;
+.contact-form .input-box .send-btn:hover {
+  background-position: right center;
 }
+
+
+
+
+
+
+
 
 .footer{
   background: url(images/bg.jpg)no-repeat;
@@ -646,6 +691,7 @@ body{
   color: #fff;
   text-align: center;
   padding: 2em;
+  border-top: 5px solid rgba(126, 126, 126, 0.5);
 }
 
 .footer .footer-title{
@@ -664,7 +710,37 @@ body{
   text-decoration: none;
 }
 
+@media (min-width: 1180px){
+.custom-cursor {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background-color: #55555560;
+  border: solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none; /* Den Cursor von Klicks ausschließen */
+  transition: width 0.3s, height 0.3s; /* Übergangseffekt für Größenänderung */
+  z-index: 9999; /* Z-Index erhöhen, um sicherzustellen, dass der benutzerdefinierte Cursor über anderen Inhalten liegt */
+  left: 50%; /* Horizontale Position in der Mitte des Cursors */
+  top: 50%; /* Vertikale Position in der Mitte des Cursors */
+  transform: translate(-50%, -50%); /* Position des Cursors korrigieren */
+}
+}
+
+
+
+
 @media (max-width: 1180px){
+
+  body {
+    cursor: default;
+    overflow-x: hidden;
+  }
+
+  .cards {
+    width: 100%;
+  }
+
   .main{
     position: relative;
     width: 100%;
@@ -678,7 +754,8 @@ body{
   }
 
   header{
-    padding: 12px 20px;
+    padding: 5px 20px;
+    max-width: 90%;
   }
 
   header.sticky{
@@ -695,7 +772,7 @@ body{
     background: rgba(39, 39, 39, 1);
     top: 0;
     right: 0;
-    width: 380px;
+    width: 340px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -788,13 +865,14 @@ body{
 
   .contact-form{
     padding: 35px 40px;
+    width: 345px;
   }
 }
 
 .scrollToTop-btn{
   z-index: 999;
   position: fixed;
-  background: #3a6cf4;
+  background: #303131;
   color: #fff;
   width: 45px;
   height: 45px;
@@ -808,6 +886,10 @@ body{
   pointer-events: none;
   opacity: 0;
   transition: all 0.3s ease;
+}
+
+.scrollToTop-btn:hover{
+  background: #505050;
 }
 
 .scrollToTop-btn.active{

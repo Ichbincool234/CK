@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     cursor.style.top = e.pageY + "px";
   });
 
-  const hoverables = document.querySelectorAll("a, button, input[type='button'], input[type='submit']");
+  const hoverables = document.querySelectorAll("a, button, input[type='button'], input[type='submit'], .scrollToTop-btn");
 
   hoverables.forEach(function(hoverable) {
     hoverable.style.cursor = "none"; // Standard-Cursor für Hoverables ausblenden
@@ -44,9 +44,19 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+const cards = document.querySelectorAll(".card");
+const wrapper = document.querySelector(".cards");
 
+wrapper.addEventListener("mousemove", function ($event) {
+	cards.forEach((card) => {
+		const rect = card.getBoundingClientRect();
+		const x = $event.clientX - rect.left;
+		const y = $event.clientY - rect.top;
 
-
+		card.style.setProperty("--xPos", `${x}px`);
+		card.style.setProperty("--yPos", `${y}px`);
+	});
+});
 
 
 
